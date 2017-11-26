@@ -10,6 +10,15 @@ pygui.press('enter')
 paint_window = pygui.getWindow(choice)
 
 
+def select_tool(toolname):
+    if toolname == 'brush':
+        pygui.press('b')
+    elif toolname == 'bucket':
+        pygui.press('f')
+    elif toolname == 'eraser':
+        pygui.press('e')
+
+
 def fill_square(x=0, y=0):
     pygui.moveRel(x, y)
     pygui.press('f')
@@ -17,10 +26,10 @@ def fill_square(x=0, y=0):
 
 
 def create_square(size, x=0, y=0):
-    pygui.dragRel(size + x, 0 + y, duration=.25)
-    pygui.dragRel(0 + x, size + y, duration=.25)
-    pygui.dragRel(-size + x, 0 + y, duration=.25)
-    pygui.dragRel(0 + x, -size + y, duration=.25)
+    pygui.dragRel(size + x, 0, duration=.05)
+    pygui.dragRel(0, size + y, duration=.05)
+    pygui.dragRel(-size - x, 0, duration=.05)
+    pygui.dragRel(0, -size - y, duration=.05)
 
 
 def resize_brush(size):
@@ -66,3 +75,7 @@ for i in range(4):
 # fills in squares diagonal from each other
 fill_square(15, 15)
 fill_square(-30, -30)
+
+select_tool('brush')
+center_brush()
+create_square(50, 50, 50)
