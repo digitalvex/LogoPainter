@@ -10,6 +10,19 @@ pygui.press('enter')
 paint_window = pygui.getWindow(choice)
 
 
+def fill_square(x=0, y=0):
+    pygui.moveRel(x, y)
+    pygui.press('f')
+    pygui.click()
+
+
+def create_square(size, x=0, y=0):
+    pygui.dragRel(size + x, 0 + y, duration=.25)
+    pygui.dragRel(0 + x, size + y, duration=.25)
+    pygui.dragRel(-size + x, 0 + y, duration=.25)
+    pygui.dragRel(0 + x, -size + y, duration=.25)
+
+
 def resize_brush(size):
     pygui.click(234, 101)
     pygui.typewrite(size)
@@ -42,3 +55,14 @@ else:
     pygui.getWindow(choice).maximize()
 
 create_new_project()
+center_brush()
+
+s = -1
+for i in range(4):
+    s *= -1
+    create_square(50 * s)
+    time.sleep(1.25)
+
+# fills in squares diagonal from each other
+fill_square(15, 15)
+fill_square(-30, -30)
